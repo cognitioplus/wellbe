@@ -128,5 +128,92 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  // Initialize Supabase Client
+  const supabaseUrl = 'https://isresrnchbbmydquqakq.supabase.co';
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'; // REPLACE WITH YOUR ACTUAL ANON KEY
+  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+  // Function to log mood
+  async function logMood(mood, journal, hrvScore, stressIndex) {
+    try {
+      const { error } = await supabase
+        .from('wellbe_actions')
+        .insert([
+          {
+            action: 'mood_logged',
+            mood_quadrant: mood,
+            journal_entry: journal,
+            hrv_score: hrvScore,
+            stress_index: stressIndex,
+            timestamp: new Date().toISOString()
+          }
+        ]);
+      
+      if (error) {
+        console.error("Save failed:", error);
+        return false;
+      }
+      
+      console.log("Mood logged successfully!");
+      awardCarePoints(50, 'Mood Logged');
+      return true;
+    } catch (err) {
+      console.error("Error logging mood:", err);
+      return false;
+    }
+  }
+
+  // Function to award CarePoints
+  async function awardCarePoints(points, reason) {
+    try {
+      // Get current balance
+      const { data: lastEntries, error: selectError } = await supabase
+        .from('carepoints_log')
+        .select('balance')
+        .order('awarded_at', { ascending: false })
+        .limit(1);
+
+      if (selectError) {
+        console.error("Error getting balance:", selectError);
+        return;
+      }
+
+      const currentBalance = lastEntries && lastEntries.length > 0 ? lastEntries[0].balance : 0;
+      const newBalance = currentBalance + points;
+
+      // Insert new record
+      const { error: insertError } = await supabase
+        .from('carepoints_log')
+        .insert([
+          { 
+            user_id: 'anonymous', 
+            points, 
+            reason, 
+            balance: newBalance,
+            awarded_at: new Date().toISOString()
+          }
+        ]);
+
+      if (insertError) {
+        console.error("Error awarding CarePoints:", insertError);
+      } else {
+        console.log(`Awarded ${points} CarePoints. New balance: ${newBalance}`);
+        
+        // Optional: Show notification to user
+        if (typeof showToast === 'function') {
+          showToast(`+${points} CarePoints! Keep going!`, 'success');
+        }
+      }
+    } catch (err) {
+      console.error("Error in awardCarePoints:", err);
+    }
+  }
+
+  // Optional: Attach to window for debugging
+  window.logMood = logMood;
+  window.awardCarePoints = awardCarePoints;
+</script>
 </body>
 </html>

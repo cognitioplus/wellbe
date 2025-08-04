@@ -132,10 +132,33 @@
 <script>
   // Initialize Supabase Client
   const supabaseUrl = 'https://isresrnchbbmydquqakq.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'; // REPLACE WITH YOUR ACTUAL ANON KEY
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzcmVzcm5jaGJibXlkcXVxYWtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQyNDkyMjgsImV4cCI6MjA2OTgyNTIyOH0.dfi3QvKECfXHl_L6chpu4-XsHzHidnQ4YhCXUxag5bk'; // 
   const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
   // Function to log mood
+  <!-- Yellow Mood Button -->
+<button onclick="logMood('Yellow', 'Feeling hopeful today.', 72, 68)" 
+        class="mood-button yellow">
+  <span>😊</span> Yellow
+</button>
+
+<!-- Red Mood Button -->
+<button onclick="logMood('Red', 'Feeling stressed.', 60, 85)" 
+        class="mood-button red">
+  <span>😠</span> Red
+</button>
+
+<!-- Blue Mood Button -->
+<button onclick="logMood('Blue', 'Feeling sad.', 55, 75)" 
+        class="mood-button blue">
+  <span>😢</span> Blue
+</button>
+
+<!-- Green Mood Button -->
+<button onclick="logMood('Green', 'Feeling calm.', 80, 40)" 
+        class="mood-button green">
+  <span>😌</span> Green
+</button>
   async function logMood(mood, journal, hrvScore, stressIndex) {
     try {
       const { error } = await supabase

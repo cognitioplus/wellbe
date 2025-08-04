@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Well-Be – Your Journey Back to Source</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <h1>Be Well. Be Source.</h1>
+      <p>Every mood you log is a step back to the Source — and a leap forward for humanity.</p>
+      <p>Join the <strong>One Billion Returning</strong> movement. Start your journey below.</p>
+      <button onclick="startJourney()" class="cta-button">Begin Your Well-Be Journey</button>
+    </div>
+  </header>
+
+  <!-- Mission Section -->
+  <section class="mission">
+    <div class="container">
+      <h2>Your Healing Heals the World</h2>
+      <p>
+        Mental health has been relegated for too long — in the Philippines, across Asia, and around the globe. 
+        But now, the veil is lifting.
+      </p>
+      <p>
+        You are not broken. You are <strong>remembering</strong>.
+      </p>
+      <p>
+        Well-Be is your companion in this return. A simple, beautiful tool to track your emotions, design resilient habits, and reclaim your inner light.
+      </p>
+      <p>
+        And when millions of us do this together, something extraordinary happens:
+      </p>
+      <ul>
+        <li>Local governments see the data and finally fund mental health.</li>
+        <li>Hospitals integrate emotional wellness into primary care.</li>
+        <li>Communities stop asking "Are you crazy?" and start saying "How are you, really?"</li>
+      </ul>
+      <p>This is how <strong>one billion people return to Source</strong> — not in a single event, but in a million quiet moments of courage.</p>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section class="tools">
+    <div class="container">
+      <h2>Your Resilience Toolkit</h2>
+      <div class="tool-card">
+        <h3>🌈 SMART Emotion Tracker</h3>
+        <p>Log your mood in four colors — Red, Yellow, Blue, Green — and see your emotional rhythm unfold.</p>
+        <a href="https://asilva777.github.io/Smart-Emotion-Tracker-and-Journal/" target="_blank" class="tool-link">Open Tracker</a>
+      </div>
+      <div class="tool-card">
+        <h3>🛠️ Resilient Habit Designer</h3>
+        <p>Build habits that align your mind, body, and spirit — for sleep, focus, and inner peace.</p>
+        <a href="https://asilva777.github.io/resilient-habit-designer/" target="_blank" class="tool-link">Design Your Habit</a>
+      </div>
+      <div class="tool-card">
+        <h3>🧭 Resilient Navigator</h3>
+        <p>Chart your resilience journey and see how far you’ve come.</p>
+        <a href="https://asilva777.github.io/Resilience-Navigator/" target="_blank" class="tool-link">Download Chart</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Survey -->
+  <section class="survey">
+    <div class="container">
+      <h2>Quick Well-Being Pulse Survey</h2>
+      <p>Take a moment to check in with your emotional well-being. Your input helps us improve mental health support across Asia.</p>
+      <p><em>It will only take 2 minutes.</em></p>
+      <button onclick="startSurvey()" class="cta-button">Take the Survey</button>
+    </div>
+  </section>
+
+  <!-- GROWTH Tribe & CarePoints -->
+  <section class="community">
+    <div class="container">
+      <h2>Join the GROWTH Tribe</h2>
+      <p>Every time you complete a journal entry or habit design, you earn <strong>CarePoints</strong> — redeemable for counseling, training, and community leadership.</p>
+      <p>Start your journey toward becoming a <strong>Resilience Guide</strong>.</p>
+      <a href="https://preview-lcfyst0f--growth-support-wellness-1.deploypad.app/" target="_blank" class="cta-button">Join GROWTH Tribe</a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What People Are Saying</h2>
+      <blockquote>
+        "This isn't just an app — it's a movement. I finally feel seen."<br>
+        <strong>— Maria, Teacher, Cebu</strong>
+      </blockquote>
+      <blockquote>
+        "I used to hide my anxiety. Now I track it, understand it, and heal."<br>
+        <strong>— Juan, OFW, Dubai</strong>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2>Stay Connected</h2>
+      <p>Don't miss the latest updates and exclusive content tailored just for you.</p>
+      <form action="https://your-airtable-form-url" method="POST">
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p><small>We respect your privacy. Unsubscribe anytime.</small></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Cognitio+ PH. All rights reserved.</p>
+      <p>Built with <span style="color:#e74c3c;">❤️</span> for the Filipino people.</p>
+      <p>
+        <a href="https://personal-resilience.cognitio-plus.com">Personal Resilience: The Path to Oneness</a> | 
+        <a href="https://cognitio-plus.aiwaapp.live/store">Store</a> | 
+        <a href="https://m.me/1202787191563496">AI Chat</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

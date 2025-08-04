@@ -13,3 +13,16 @@ The gateway to resilience, rooted in culture, powered by technology.
 
 ## License
 MIT
+
+## Repo structure
+wellbe.cognitio-plus.com/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+├── assets/
+│   ├── logo.png
+│   └── icons/
+├── README.md
+└── LICENSE

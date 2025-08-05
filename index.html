@@ -1,495 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>"Well-Be: Intelligent Well-Being Tool"</title>
-    <meta name="description" content="Track stress, heart health, emotios, physical activities, and sleep with AI insights for improved wellness." />
-    <meta name="author" content="Cognitio+" />
-    <meta property="og:title" content="Well-Be: Intelligent Well-Being Tool" />
-    <meta property="og:description" content="Track stress, heart health, emotions, physical activities and sleep with AI insights for improved wellness." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@cognitioplus" />
-    <meta name="twitter:image" content="/og.jpg" />
-    <meta name="description" content="Track stress, heart health, emotios, physical activities, and sleep with AI insights for improved wellness.." />
-    <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-     <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600|Montserrat:400,700|Roboto+Condensed:400,700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #b425aa;
-      --accent: #f3e329;
-      --secondary: #c80ec9;
-      --white: #fff;
-      --gray-bg: #f4f6f9;
-      --shadow: 0 0 12px rgba(0,0,0,0.08);
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#b425aa" />
+  <title>Well-Be: Intelligent Stress Manager Tool</title>
+  
+  <!-- SEO & Social -->
+  <meta name="description" content="Track heart health, stress, and sleep with AI insights for improved wellness." />
+  <meta name="author" content="Cognitio+" />
+  <meta name="keywords" content="HRV, heart rate variability, stress management, mental health, wellness, Cognitio+, Well-Be" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wellbe.cognitio-plus.com/" />
+  <meta property="og:title" content="Well-Be: Intelligent Well-Being Manager Tool" />
+  <meta property="og:description" content="Track heart health, stress, and emotion with AI insights for improved wellness." />
+  <meta property="og:image" content="/assets/images/og-image.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://wellbe.cognitio-plus.com/" />
+  <meta property="twitter:title" content="Well-Be: Intelligent Well-Being Manager Tool" />
+  <meta property="twitter:description" content="Track heart health, stress, and emotion with AI insights for improved wellness." />
+  <meta property="twitter:image" content="/assets/images/og-image.jpg" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Montserrat:wght@300;400;500&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Schema.org for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Well-Be by Cognitio+",
+    "description": "AI-powered stress and heart rate variability tracking tool",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
     }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: var(--gray-bg);
-      font-family: 'Montserrat', 'Roboto Condensed', 'Oswald', Arial, sans-serif;
-    }
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background: linear-gradient(90deg, var(--primary), var(--secondary) 70%);
-      color: var(--white);
-      padding: 2rem 1rem 1.4rem 1rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    header h1 {
-      font-family: 'Oswald', Arial, sans-serif;
-      font-size: 2.3rem;
-      margin: 0;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    header p {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0.5rem auto 0 auto;
-      font-size: 1.1rem;
-      max-width: 820px;
-      line-height: 1.5;
-    }
-    main {
-      max-width: 900px;
-      margin: 2.5rem auto 2rem auto;
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      padding: 2.5rem 2rem 2rem 2rem;
-      font-family: 'Montserrat', 'Roboto Condensed', sans-serif;
-    }
-    h2 {
-      color: var(--primary);
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-top: 0;
-      margin-bottom: 1.4rem;
-    }
-    h3 {
-      color: var(--secondary);
-      font-family: 'Montserrat', sans-serif;
-      margin-top: 1.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .section {
-      margin-bottom: 2rem;
-    }
-    label, .form-label {
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 500;
-      color: #222;
-      display: block;
-      margin: 0.7rem 0 0.25rem 0;
-    }
-    input[type="text"], input[type="number"], select {
-      width: 100%;
-      padding: 0.6rem;
-      border: 1.5px solid #d1c7d3;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-family: 'Roboto Condensed', Arial, sans-serif;
-      background: #fff;
-      color: #222;
-      margin-bottom: 0.85rem;
-    }
-    input[type="radio"], input[type="checkbox"] {
-      margin-right: 0.35rem;
-      accent-color: var(--primary);
-      vertical-align: middle;
-    }
-    .radio-group, .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin-bottom: 1rem;
-      align-items: center;
-    }
-    .region-select {
-      width: 100%;
-      max-width: 300px;
-      margin-bottom: 1rem;
-    }
-    .form-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.6rem;
-    }
-    .form-row > div {
-      flex: 1;
-      min-width: 140px;
-    }
-    .notice {
-      background: linear-gradient(90deg, var(--secondary) 60%, var(--accent) 100%);
-      color: var(--white);
-      padding: 1.1rem 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      font-size: 1.08rem;
-      font-family: 'Montserrat', sans-serif;
-      box-shadow: var(--shadow);
-    }
-    button, .btn {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      color: var(--white);
-      border: none;
-      padding: 0.9rem 2.1rem;
-      border-radius: 7px;
-      font-size: 1.08rem;
-      font-family: 'Oswald', Arial, sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 3px 16px rgba(180,37,170,0.05);
-      margin-top: 1rem;
-      transition: background 0.2s;
-    }
-    button:hover { background: linear-gradient(90deg, var(--secondary), var(--primary)); }
-    .results {
-      background: #fff2fa;
-      border-left: 7px solid var(--primary);
-      padding: 1.5rem 1.2rem;
-      border-radius: 9px;
-      margin-top: 2rem;
-      color: #222;
-      font-size: 1.1rem;
-      box-shadow: var(--shadow);
-    }
-    .results h3 {
-      color: var(--primary);
-      margin-top: 0;
-    }
-    .risk-low { color: #23b425; font-weight: bold; }
-    .risk-moderate { color: #e6a500; font-weight: bold; }
-    .risk-high { color: #d70e3d; font-weight: bold; }
-    .referral-actions {
-      margin-top: 0.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .referral-actions a, .referral-actions button {
-      background: var(--accent);
-      color: #222;
-      border: none;
-      border-radius: 6px;
-      padding: 0.4rem 1.3rem;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 600;
-      font-size: 1.05rem;
-      margin-right: 0.5rem;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 0.2rem;
-      transition: background 0.16s;
-    }
-    .referral-actions a:hover, .referral-actions button:hover {
-      background: #ede163;
-      color: #111;
-    }
-    .validation-error {
-      color: #d70e3d;
-      font-size: 1rem;
-      font-family: 'Roboto Condensed', sans-serif;
-      margin-top: 0.7rem;
-      margin-bottom: 0.7rem;
-    }
-    @media (max-width:700px) {
-      main { padding: 1.2rem 0.5rem; }
-      header h1 { font-size: 1.3rem; }
-      .signature-row { flex-direction: column; gap: 0.7rem; }
-      .form-row { flex-direction: column; gap: 0.2rem; }
-    }
-  </style>
+  }
+  </script>
 </head>
-    <body>
-       <!-- Hero Section -->
-  <header class="hero">
-  <!-- Mission Section -->
-  <section class="mission">
-    <div class="container">
-      <h2>Ever feel wired but tired? That's stress.</h2>
-      <p>
-        Quietly reshaping your mental health and well-being more than you know.
-      </p>
-      <p>
-        With Well-Be, you can . You are are not alone. You are taken cared of.
-      </p>
-      <p>
-        <h3>MEASURE HRV</h3>
-        <p>Log your mood in four colors — Red, Yellow, Blue, Green — and see your emotional rhythm unfold.</p>
-        <a href="https://cognitio-plus.appimize.app/journal/" target="_blank" class="tool-link">Open Tracker</a>
-      </div>A simple, beautiful tool to track your emotions, design resilient habits, and reclaim your inner light.
-      </p>
-      <p>
-        And when millions of us do this together, something extraordinary happens:
-      </p>
-      <ul>
-        <li>Local governments see the data and finally fund mental health.</li>
-        <li>Hospitals integrate emotional wellness into primary care.</li>
-        <li>Communities stop asking "Are you crazy?" and start saying "How are you, really?"</li>
-      </ul>
-      <p>This is how <strong>one billion people return to Source</strong> — not in a single event, but in a million quiet moments of courage.</p>
-    </div>
-  </section>
-
-  <!-- Tools Section -->
-  <section class="tools">
-    <div class="container">
-      <h2>Your Well-Being Toolkit</h2>
-      <div class="tool-card">
-        <h3>🌈 SMART Emotion Tracker</h3>
-        <p>Log your mood in four colors — Red, Yellow, Blue, Green — and see your emotional rhythm unfold.</p>
-        <a href="https://cognitio-plus.appimize.app/journal/" target="_blank" class="tool-link">Open Tracker</a>
-      </div>
-      <div class="tool-card">
-        <h3>Well-Be</h3>
-        <p>decode your stress using Heart Rate Variability, and get your personalized tips to gain that unstoppable YOU.</p>
-        <a href="https://cognitio-plus.appimize.app/well-be/" target="_blank" class="tool-link">Measure HRV</a>
-      </div>
-      <div class="tool-card">
-        <h3>🛠️ Resilient Habit Designer</h3>
-        <p>Build habits that align your mind, body, and spirit — for sleep, focus, and inner peace.</p>
-        <a href="https://cognitio-plus.appimize.app/habit-designer/" target="_blank" class="tool-link">Design Your Habit</a>
-      </div>
-      <div class="tool-card">
-        <h3>🧭 Resilient Navigator</h3>
-        <p>Chart your resilience journey and see how far you’ve come.</p>
-        <a href="https://cognitio-plus.appimize.app/resilience-navigator/" target="_blank" class="tool-link">Access and Navigate</a>
-      </div>
-      <div class="tool-card">
-        <h3> Oasis: Your Mindfulness Sanctuary</h3>
-        <p>Experience  that await. Immerse yourself in the symphony of sights and sounds for calmness.</p>
-        <a href="https://cognitio-plus.appimize.app/oasis/" target="_blank" class="tool-link">Step into the Realm</a>
-      </div>
-    </div>
-  </section>
-  <!-- Customized and Personalized Services and Solutions -->
-  <section class="serviceCustomization">
-    <div class="container">
-      <h2>Explore Our Innovative Service Customization Tool</h2>
-      <p>Customize your mental health and resilience service package</p>
-      <a href="https://cognitio-plus.appimize.app/plan-builder" target="_blank" class="tool-link">GET STARTED</a>
-    </div>
-  </section>
-
-  <!-- Quick Survey -->
-  <section class="survey">
-    <div class="container">
-      <h2>Quick Well-Being Pulse Survey</h2>
-      <p>Take a moment to check in with your emotional well-being. Your input helps us improve mental health support across Asia.</p>
-      <p><em>It will only take 2 minutes.</em></p>
-      <button onclick="startSurvey()" class="cta-button">Take the Survey</button>
-    </div>
-  </section>
-
-  <!-- GROWTH Tribe & CarePoints -->
-  <section class="community">
-    <div class="container">
-      <h2>Join the GROWTH Tribe</h2>
-      <p>Every time you complete a journal entry or habit design, you earn <strong>CarePoints</strong> — redeemable for counseling, training, and community leadership.</p>
-      <p>Start your journey toward becoming a <strong>Resilience Guide</strong>.</p>
-      <a href="https://preview-lcfyst0f--growth-support-wellness-1.deploypad.app/" target="_blank" class="cta-button">Join GROWTH Tribe</a>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <div class="container">
-      <h2>What People Are Saying</h2>
-      <div class="amz_listingComponent amz_circleIcon" data-target="listingComponent">
-            <div class="amz_listing_wrapper">
-                <a href="javascript:;" class="amz_listingHolder" data-target="listingHolder">
-                    <div class="amz_listingIcon" data-target="listingIcon" style="background-image: url(&quot;https://appimize.app/assets/apps/user_1097/images/88e18a862331_865_1097.png&quot;);"><i class="fas fa-clipboard-list d-none" data-target="listingFontIcon" style="font-size: 12px;"></i></div>
-                    <div class="amz_listingContent">
-                        <div class="amz_listingTitle" data-target="listingTitle"><p><span style="font-family:Montserrat, sans-serif;font-size:14px;">MAKING QUALITY ARE MORE ACCESSIBLE</span></p></div>
-                        <div class="amz_listingDescription" data-target="listingDescription"><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:13px;">“Cognitio+ empowers personal growth, resilience, and well-being with tailored solutions for diverse needs. Its services are affordably priced compared to other apps, making quality care more accessible.”</span></p><h2><span style="font-family:Montserrat, sans-serif;font-size:12px;"><strong>ASST. PROF. RIA V. CABANES</strong></span></h2><p><span style="color:rgb(0,0,0);font-family:Montserrat, sans-serif;font-size:12px;">Mental Health Focal Person | UP Open University Committee on Psychosocial and Emergency Services (CoPES)</span></p><p>&nbsp;</p><p><span style="color:hsl(0,0%,0%);font-family:Montserrat, sans-serif;font-size:12px;"><strong>⭐️⭐️⭐️⭐️⭐️</strong></span></p></div>
-                    </div>
-                </a>
-            </div>
-            <div class="amz_listing_wrapper">
-        <a href="javascript:;" class="amz_listingHolder" data-target="listingHolder">
-            <div class="amz_listingIcon" data-target="listingIcon" style="background-image: url(&quot;https://appimize.app/assets/apps/user_1097/images/1fb7384034d7_220_1097.png&quot;);"><i class="fas fa-clipboard-list d-none" data-target="listingFontIcon"></i></div>
-            <div class="amz_listingContent">
-                <div class="amz_listingTitle" data-target="listingTitle"><p><span style="font-family:Montserrat, sans-serif;font-size:14px;">AI-POWERED CLARITY</span></p></div>
-                <div class="amz_listingDescription" data-target="listingDescription"><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;">“Cognitio+'s Plan Builder turns empathy into action. Our mental health initiatives ae now deeply inclusive, strategic, and rooted in real impact. No fluff, no overwhelm just AI-powered clarity that strengthens every step of our resilience-building journey.”</span></p><p>&nbsp;</p><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;"><strong>MR. CRISTOBAL DEXTER MENDOLA III</strong></span></p><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;">Psychosocial Care Specialist</span></p><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;">City Government of Ormoc</span></p><p>&nbsp;</p><p><span style="color:hsl(0,0%,0%);font-family:Montserrat, sans-serif;font-size:12px;"><strong>⭐️⭐️⭐️⭐️⭐️</strong></span></p></div>
-            </div>
-        </a>
-    </div><div class="amz_listing_wrapper">
-                <a href="javascript:;" class="amz_listingHolder" data-target="listingHolder">
-                    <div class="amz_listingIcon" data-target="listingIcon" style="background-image: url(&quot;https://appimize.app/assets/apps/user_1097/images/edd96fad923b_672_1097.png&quot;);"><i class="fas fa-clipboard-list d-none" data-target="listingFontIcon" style="font-size: 12px;"></i></div>
-                    <div class="amz_listingContent">
-                        <div class="amz_listingTitle" data-target="listingTitle"><p><span style="font-family:Montserrat, sans-serif;font-size:14px;">EXCEPTIONAL PLATFORM</span></p></div>
-                        <div class="amz_listingDescription" data-target="listingDescription"><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:13px;">“</span><span style="font-family:Montserrat, sans-serif;font-size:12px;">Cognitio+ is an exceptional platform for </span><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;">personal growth, resilience and wellness - designed for both individuals and groups. Its intuitive interface and well-organized make it easy for anyone to use."</span></p><p>&nbsp;</p><p><span style="font-family:Montserrat, sans-serif;"><strong>MS. BRYCE FABRO</strong></span></p><p><span style="color:rgb(0,0,0);font-family:Montserrat, sans-serif;font-size:12px;">CEO | Emotional Reset Center</span></p><p>&nbsp;</p><p><span style="color:hsl(0,0%,0%);font-family:Montserrat, sans-serif;font-size:12px;"><strong>⭐️⭐️⭐️⭐️⭐️</strong></span></p></div>
-                    </div>
-                </a>
-            </div>
-        
-    <div class="amz_listing_wrapper">
-        <a href="javascript:;" class="amz_listingHolder" data-target="listingHolder">
-            <div class="amz_listingIcon" data-target="listingIcon" style="background-image: url(&quot;https://appimize.app/assets/apps/user_1097/images/80cb7c713197_753_1097.png&quot;);"><i class="fas fa-clipboard-list d-none" data-target="listingFontIcon"></i></div>
-            <div class="amz_listingContent">
-                <div class="amz_listingTitle" data-target="listingTitle"><p><span style="font-family:Montserrat, sans-serif;font-size:14px;">PERSONALIZED PROGRAMS</span></p></div>
-                <div class="amz_listingDescription" data-target="listingDescription"><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;">"Cognitio+ delivers expert-led&nbsp;Growth and Resilience sessions and licensed therapy, all through a user-friendly platform. With personalized programs, and high-quality care, it's ideal for anyone looking to enhance their overall well-being."</span></p><p>&nbsp;</p><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;"><strong>MS. TRACY AGUILA</strong></span></p><p><span style="color:rgb(95,95,95);font-family:Montserrat, sans-serif;font-size:12px;">Health Professional | Development Bank of the Philippines (DBP)</span></p><p>&nbsp;</p><p><span style="color:hsl(0,0%,0%);font-family:Montserrat, sans-serif;font-size:12px;"><strong>⭐️⭐️⭐️⭐️⭐️</strong></span></p></div>
-            </div>
-        </a>
-    </div>
-</div>
-  </section>
-
-  <!-- Newsletter -->
-  <section class="newsletter">
-    <div class="container">
-      <h2>Stay Connected</h2>
-      <p>Don't miss the latest updates and exclusive content tailored just for you.</p>
-      <form action="https://your-airtable-form-url" method="POST">
-        <input type="email" name="email" placeholder="Your email" required>
-        <button type="submit">Subscribe</button>
-      </form>
-      <p><small>We respect your privacy. Unsubscribe anytime.</small></p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Cognitio+ PH. All rights reserved.</p>
-      <p>Built with <span style="color:#e74c3c;">❤️</span> for the Filipino people.</p>
-      <p>
-        <a href="https://personal-resilience.cognitio-plus.com">Personal Resilience: The Path to Oneness</a> | 
-        <a href="https://cognitio-plus.aiwaapp.live/store">Store</a> | 
-        <a href="https://m.me/1202787191563496">AI Chat</a>
-      </p>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script>
-  // Initialize Supabase Client
-  const supabaseUrl = 'https://isresrnchbbmydquqakq.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzcmVzcm5jaGJibXlkcXVxYWtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQyNDkyMjgsImV4cCI6MjA2OTgyNTIyOH0.dfi3QvKECfXHl_L6chpu4-XsHzHidnQ4YhCXUxag5bk'; // 
-  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
-
-  // Function to log mood
-  <!-- Yellow Mood Button -->
-<button onclick="logMood('Yellow', 'Feeling hopeful today.', 72, 68)" 
-        class="mood-button yellow">
-  <span>😊</span> Yellow
-</button>
-
-<!-- Red Mood Button -->
-<button onclick="logMood('Red', 'Feeling stressed.', 60, 85)" 
-        class="mood-button red">
-  <span>😠</span> Red
-</button>
-
-<!-- Blue Mood Button -->
-<button onclick="logMood('Blue', 'Feeling sad.', 55, 75)" 
-        class="mood-button blue">
-  <span>😢</span> Blue
-</button>
-
-<!-- Green Mood Button -->
-<button onclick="logMood('Green', 'Feeling calm.', 80, 40)" 
-        class="mood-button green">
-  <span>😌</span> Green
-</button>
-  async function logMood(mood, journal, hrvScore, stressIndex) {
-    try {
-      const { error } = await supabase
-        .from('wellbe_actions')
-        .insert([
-          {
-            action: 'mood_logged',
-            mood_quadrant: mood,
-            journal_entry: journal,
-            hrv_score: hrvScore,
-            stress_index: stressIndex,
-            timestamp: new Date().toISOString()
-          }
-        ]);
-      
-      if (error) {
-        console.error("Save failed:", error);
-        return false;
-      }
-      
-      console.log("Mood logged successfully!");
-      awardCarePoints(50, 'Mood Logged');
-      return true;
-    } catch (err) {
-      console.error("Error logging mood:", err);
-      return false;
+<body>
+  <div id="root"></div>
+  
+  <!-- Preload critical fonts -->
+  <style>
+    @font-face {
+      font-family: 'Oswald';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: local('Oswald Regular'), local('Oswald-Regular'), url(/fonts/Oswald-Regular.woff2) format('woff2');
     }
-  }
-  // Function to award CarePoints
-  async function awardCarePoints(points, reason) {
-    try {
-      // Get current balance
-      const { data: lastEntries, error: selectError } = await supabase
-        .from('carepoints_log')
-        .select('balance')
-        .order('awarded_at', { ascending: false })
-        .limit(1);
-
-      if (selectError) {
-        console.error("Error getting balance:", selectError);
-        return;
-      }
-
-      const currentBalance = lastEntries && lastEntries.length > 0 ? lastEntries[0].balance : 0;
-      const newBalance = currentBalance + points;
-
-      // Insert new record
-      const { error: insertError } = await supabase
-        .from('carepoints_log')
-        .insert([
-          { 
-            user_id: 'anonymous', 
-            points, 
-            reason, 
-            balance: newBalance,
-            awarded_at: new Date().toISOString()
-          }
-        ]);
-
-      if (insertError) {
-        console.error("Error awarding CarePoints:", insertError);
-      } else {
-        console.log(`Awarded ${points} CarePoints. New balance: ${newBalance}`);
-        
-        // Optional: Show notification to user
-        if (typeof showToast === 'function') {
-          showToast(`+${points} CarePoints! Keep going!`, 'success');
-        }
-      }
-    } catch (err) {
-      console.error("Error in awardCarePoints:", err);
+    @font-face {
+      font-family: 'Oswald';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: local('Oswald Bold'), local('Oswald-Bold'), url(/fonts/Oswald-Bold.woff2) format('woff2');
     }
-  }
-
-  // Optional: Attach to window for debugging
-  window.logMood = logMood;
-  window.awardCarePoints = awardCarePoints;
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script src="service-worker.js"></script>
-  <script src="script.js"></script>
-  <script src="server.js"></script>
-</script>
+    /* Add similar for Montserrat and Roboto Condensed */
+  </style>
+  
+  <!-- Core scripts -->
+  <script>
+    // Check for service worker support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

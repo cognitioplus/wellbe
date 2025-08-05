@@ -1,4 +1,4 @@
-# Well-Be – Cognitio+
+# Well-Be by Cognitio+
 
 The gateway to resilience, rooted in culture, powered by technology.
 

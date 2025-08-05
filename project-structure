@@ -1,0 +1,22 @@
+wellbe.cognitio-plus/
+├── index.html                  ← Enhanced PWA entry point
+├── manifest.json               ← PWA configuration
+├── service-worker.js           ← Offline support
+├── assets/
+│   ├── icons/
+│   └── images/
+├── src/
+│   ├── index.css
+│   ├── main.tsx
+│   ├── App.tsx
+│   ├── components/
+│   │   └── hrv/
+│   ├── hooks/
+│   │   └── useHRV.ts
+│   ├── lib/
+│   │   ├── hrv-calculator.js
+│   │   └── camera-ppg.js
+│   └── pages/
+│       ├── HRVMeasurementPage.tsx
+│       └── ...
+└── README.md

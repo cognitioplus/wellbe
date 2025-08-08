@@ -9,13 +9,16 @@
     <meta name="author" content="Cognitio+" />
     <meta property="og:title" content="WELL-BE: Your Intelligent Stress Manager Tool" />
     <meta property="og:description" content="Track heart health, stress, and, emotions, physical activities, and sleep with AI insights for improved well-being." />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="https://cognitio-plus.appimize.app" />
     <meta property="og:image" content="https://appimize.app/assets/apps/user_1097/images/f2310431f131_208_1097.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@cognitioplus" />
     <meta name="twitter:image" content="https://appimize.app/assets/apps/user_1097/images/f2310431f131_208_1097.png" />
 
+    <link rel="stylesheeet" href="/index.css" crossorigin>
+"/index.css" rel="stylesheet">
+    
       <!-- Preload critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,25 +26,75 @@
   
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="https://appimize.app/assets/apps/user_1097/images/265156b5d733_359_1097.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   
-  <!-- Schema.org for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Well-Be by Cognitio+",
-    "description": "AI-powered stress and heart rate variability tracking tool",
-    "applicationCategory": "HealthApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+  import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+interface HealthData {
+  hrv: number;
+  stress: number;
+  sleep: number;
+  energy: number;
+  steps: number;
+  calories: number;
+  activeTime: number;
+}
+
+interface AppContextType {
+  healthData: HealthData;
+  updateHealthData: (data: Partial<HealthData>) => void;
+  isConnected: boolean;
+  setIsConnected: (connected: boolean) => void;
+  notifications: number;
+  setNotifications: (count: number) => void;
+}
+
+const defaultHealthData: HealthData = {
+  hrv: 45,
+  stress: 32,
+  sleep: 78,
+  energy: 65,
+  steps: 8420,
+  calories: 1850,
+  activeTime: 45
+};
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [healthData, setHealthData] = useState<HealthData>(defaultHealthData);
+  const [isConnected, setIsConnected] = useState(true);
+  const [notifications, setNotifications] = useState(3);
+
+  const updateHealthData = (data: Partial<HealthData>) => {
+    setHealthData(prev => ({ ...prev, ...data }));
+  };
+
+  const value = {
+    healthData,
+    updateHealthData,
+    isConnected,
+    setIsConnected,
+    notifications,
+    setNotifications
+  };
+
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+export const useApp = () => {
+  const context = useContext(AppContext);
+  if (context === undefined) {
+    throw new Error('useApp must be used within an AppProvider');
   }
+  return context;
+};
   </script>
   </head>
 
@@ -85,6 +138,6 @@
       });
     }
   </script>
-  <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="/main.tsx"></script>
 </body>
 </html>

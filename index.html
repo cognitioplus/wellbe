@@ -2,22 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <meta name="theme-color" content="#b425aa" />
     <title>"WELL-BE: Your Intelligent Stress Manager Tool"</title>
     <meta name="description" content="Track heart health, stress, and sleep with AI insights for improved well-being." />
     <meta name="author" content="Cognitio+" />
     <meta property="og:title" content="WELL-BE: Your Intelligent Stress Manager Tool" />
     <meta property="og:description" content="Track heart health, stress, and, emotions, physical activities, and sleep with AI insights for improved well-being." />
-    <meta property="og:type" content="https://cognitio-plus.appimize.app" />
+    <meta property="og:type" content="https://cognitio-plus.appimize.app/" />
     <meta property="og:image" content="https://appimize.app/assets/apps/user_1097/images/f2310431f131_208_1097.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@cognitioplus" />
     <meta name="twitter:image" content="https://appimize.app/assets/apps/user_1097/images/f2310431f131_208_1097.png" />
 
-    <link rel="stylesheeet" href="/index.css" crossorigin>
-"/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     
       <!-- Preload critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,7 +127,7 @@ export const useApp = () => {
     // Check for service worker support
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('service-worker.js')
           .then(registration => {
             console.log('SW registered: ', registration);
           })
@@ -138,6 +137,6 @@ export const useApp = () => {
       });
     }
   </script>
-  <script type="module" src="/main.tsx"></script>
+  <script type="module" src="main.tsx"></script>
 </body>
 </html>

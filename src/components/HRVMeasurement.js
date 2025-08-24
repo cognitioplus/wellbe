@@ -1,3 +1,4 @@
+// src/components/HRVMeasurement.js
 import React, { useState, useEffect } from 'react';
 import { useHRV } from '../../hooks/useHRV';
 import { Button } from '@/components/ui/button';
@@ -26,7 +27,7 @@ const HRVMeasurement = () => {
     startMeasurement 
   } = useHRV();
   
-  const [measurementType, setMeasurementType] = useState<'camera' | 'bluetooth'>('camera');
+  const [measurementType, setMeasurementType] = useState('camera');
   const [showResults, setShowResults] = useState(false);
   
   useEffect(() => {
@@ -45,7 +46,6 @@ const HRVMeasurement = () => {
   
   const handleRetry = () => {
     setShowResults(false);
-    setError(null);
   };
   
   const renderMeasurementSetup = () => (

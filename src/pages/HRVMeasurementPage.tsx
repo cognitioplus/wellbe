@@ -1,3 +1,4 @@
+// src/pages/HRVMeasurementPage.js
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import HRVMeasurement from '../components/hrv/HRVMeasurement';
@@ -14,7 +15,7 @@ const HRVMeasurementPage = () => {
         <meta property="og:title" content="HRV Measurement | Well-Be by Cognitio+" />
         <meta property="og:description" content="Measure your heart rate variability with Well-Be's AI-powered tool." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://wellbe.cognitio-plus.com/hrv-measurement" />
+        <meta property="og:url" content="https://cognitioplus.github.io/wellbe/" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />

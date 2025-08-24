@@ -1,4 +1,4 @@
-// src/App.tsx
+// src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -77,7 +77,10 @@ export default function App() {
 
       {/* Footer */}
       <footer className="text-center py-8 text-gray-600 text-sm">
-        <p>© {new Date().getFullYear()} Cognitio+. Join the <strong>One Billion Returning</strong>.</p>
+        <p>
+          © {new Date().getFullYear()} Cognitio+. Join the{' '}
+          <strong>One Billion Returning</strong>.
+        </p>
       </footer>
     </div>
   );

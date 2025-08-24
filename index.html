@@ -15,7 +15,7 @@
   <meta property="og:url" content="https://cognitioplus.github.io/wellbe/">
   <meta property="og:title" content="Well-Be: AI-Powered Wellness & Resilience Tracker">
   <meta property="og:description" content="Track heart health, stress, and emotions with AI insights for improved wellness. Join the One Billion Returning.">
-  <meta property="og:image" content="https://cognitioplus.github.io/wellbe/assets/images/og-image.jpg">
+  <meta property="og:image" content="https://appimize.app/assets/apps/user_1097/images/bae59281d566_404_1097.png">
   <meta property="og:image:alt" content="Well-Be App Dashboard - Track HRV, Sleep, Emotions & Habits">
   <meta property="og:site_name" content="Well-Be by Cognitio+">
 
@@ -24,7 +24,7 @@
   <meta property="twitter:url" content="https://cognitioplus.github.io/wellbe/">
   <meta property="twitter:title" content="Well-Be: AI-Powered Wellness & Resilience Tracker">
   <meta property="twitter:description" content="Track HRV, stress, and emotions. Get personalized insights. Build unshakeable resilience.">
-  <meta property="twitter:image" content="https://cognitioplus.github.io/wellbe/assets/images/og-image.jpg">
+  <meta property="twitter:image" content="https://appimize.app/assets/apps/user_1097/images/bae59281d566_404_1097.png">
 
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,15 +48,15 @@
       src: local('Oswald Bold'), local('Oswald-Bold'), url(/fonts/Oswald-Bold.woff2) format('woff2');
     }
     body {
-      font-family: 'Roboto Condensed', 'Helvetica Neue', sans-serif;
+      font-family: 'Roboto Condensed', 'Montserrat Classic', sans-serif;
     }
     h1, h2, h3, h4, h5, h6, .font-[Oswald] { font-family: 'Oswald', sans-serif; }
-    .font-[Montserrat] { font-family: 'Montserrat', sans-serif; }
+    .font-[Montserrat] { font-family: 'Montserrat Clasic', sans-serif; }
   </style>
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="https://appimize.app/assets/apps/user_1097/images/bae59281d566_404_1097.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#b425aa">
@@ -78,7 +78,7 @@
     },
     "featureList": [
       "Track HRV and recovery",
-      "Log emotions daily",
+      "Log and track emotions daily",
       "Build resilience habits",
       "Get AI-like insights",
       "Weekly challenges & achievements"
@@ -87,7 +87,7 @@
   </script>
 
   <!-- STYLES (Tailwind-injected or build output) -->
-  <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="main.tsx"></script>
 
   <!-- GLOBAL STYLES (can be moved to CSS file later) -->
   <style>
@@ -172,7 +172,7 @@
         Well-Be
       </h1>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8 font-[Roboto_Condensed]">
-        You are not broken. You are remembering. Track your heart, mind, and soul — and join the One Billion Returning.
+        You are not broken. You are remembering. Track your heart, mind, and soul — and join the One Billion Soul Returning to the Source.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <button onclick="openTracker()" class="btn-primary font-[Montserrat] pulse">
@@ -268,11 +268,11 @@
         <div class="space-y-8">
           <blockquote class="border-l-4 border-[#b425aa] pl-6 italic text-gray-700">
             "Well-Be helped me see how my emotions affect my heart rate. I finally feel in control."
-            <footer class="mt-2 font-semibold">— Maria, Resilience Guide</footer>
+            <footer class="mt-2 font-semibold">— Jason Canmorot, Resilience Guide</footer>
           </blockquote>
           <blockquote class="border-l-4 border-[#b425aa] pl-6 italic text-gray-700">
             "The habit builder changed my mornings. Small steps, big change."
-            <footer class="mt-2 font-semibold">— Juan, 90-Day Streak</footer>
+            <footer class="mt-2 font-semibold">— April Rosemarie Baquilod, 90-Day Streak</footer>
           </blockquote>
         </div>
       </div>
@@ -285,7 +285,7 @@
         Your healing heals the world. Start your journey today — no cost, no risk, just care.
       </p>
       <button onclick="joinWaitlist()" class="btn-primary font-[Montserrat]">
-        Join the Movement
+        Signup
       </button>
     </section>
   </div>
@@ -315,7 +315,7 @@
     // Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('service-worker.js')
           .then(reg => console.log('SW registered:', reg))
           .catch(err => console.log('SW registration failed:', err));
       });

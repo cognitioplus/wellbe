@@ -1,6 +1,6 @@
 // Initialize Supabase
-const supabaseUrl = 'https://your-project.supabase.co';
-const supabaseAnonKey = 'your-anon-key';
+const supabaseUrl = 'https://supabase.com/dashboard/project/isresrnchbbmydquqakq';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxaWJhY2ZodnZ1ZmV2cGt3eW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTQyMDcsImV4cCI6MjA3MTYzMDIwN30.m_lbwxM3c0CW0-Q0ltsHYQyQLoqy9dsL0rJciJ6uBqA';
 const { createClient } = supabase;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 

@@ -1,222 +1,128 @@
-/**
- * Camera PPG (Photoplethysmography) Implementation
- * Uses smartphone camera to measure heart rate variability
- * 
- * This implementation follows the methodology described in Well-Be documentation
- */
-
-let cameraStream = null;
-let animationFrameId = null;
-let measurementCallback = null;
-let isMeasuring = false;
-
-// RGB color channels
-const RED = 0;
-const GREEN = 1;
-const BLUE = 2;
-
-// Processing parameters
-const FRAME_RATE = 30;
-const MEASUREMENT_DURATION = 60; // seconds
-const MIN_FRAMES = FRAME_RATE * 10; // Minimum 10 seconds of data
-
-// Canvas for processing
-let canvas = null;
-let context = null;
-let video = null;
+// src/lib/camera-ppg.js
 
 /**
- * Start camera-based PPG measurement
- * @param {Function} progressCallback - Callback for measurement progress
- * @returns {Promise} Resolves with PPG data
+ * Captures PPG (Photoplethysmography) data using the device camera
+ * Measures subtle color changes in fingertip to detect heart rate
+ * @param {Function} onProgress - Callback with progress (0-100)
+ * @returns {Promise<Array>} - Array of { time, r, g, b, avg } readings
  */
-export const startCameraPPG = (progressCallback = null) => {
+export const startCameraPPG = (onProgress = () => {}) => {
   return new Promise((resolve, reject) => {
-    if (isMeasuring) {
-      reject(new Error('Measurement already in progress'));
-      return;
-    }
-    
-    measurementCallback = progressCallback;
-    isMeasuring = true;
-    
-    // Create processing elements
-    setupProcessingElements();
-    
-    // Request camera access
-    navigator.mediaDevices.getUserMedia({ 
-      video: { 
-        facingMode: 'self',
+    const constraints = {
+      video: {
+        facingMode: 'self', // Use front camera
         width: { ideal: 640 },
         height: { ideal: 480 }
-      } 
-    })
-    .then(stream => {
-      cameraStream = stream;
-      video.srcObject = stream;
-      
-      // Wait for video to load
-      video.onloadedmetadata = () => {
+      }
+    };
+
+    const video = document.createElement('video');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    let stream;
+    let readings = [];
+    let startTime = null;
+    let animationId;
+
+    // Request camera access
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(mediaStream => {
+        stream = mediaStream;
+        video.srcObject = stream;
         video.play();
-        startProcessing();
-        
-        // Set up measurement completion
-        setTimeout(() => {
-          stopCameraPPG();
-          resolve(processPPGData());
-        }, MEASUREMENT_DURATION * 1000);
-      };
-    })
-    .catch(err => {
-      isMeasuring = false;
-      reject(new Error(`Camera access denied: ${err.message}`));
-    });
+
+        video.onloadedmetadata = () => {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          startTime = performance.now();
+          captureFrame();
+        };
+      })
+      .catch(err => {
+        reject(new Error(`Camera access denied: ${err.message}`));
+      });
+
+    const MAX_DURATION = 60000; // 60 seconds
+    const TARGET_READINGS = 180; // ~3Hz sampling
+    const TARGET_FPS = 3;
+
+    const captureFrame = () => {
+      const now = performance.now();
+      const elapsed = now - startTime;
+      const progress = Math.min((elapsed / MAX_DURATION) * 100, 100);
+      
+      onProgress(Math.round(progress));
+
+      if (elapsed >= MAX_DURATION || readings.length >= TARGET_READINGS) {
+        stopCameraPPG(stream);
+        resolve(readings);
+        return;
+      }
+
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        // Center crop on fingertip area
+        const size = Math.min(canvas.width, canvas.height) * 0.6;
+        const x = (canvas.width - size) / 2;
+        const y = (canvas.height - size) / 2;
+
+        ctx.drawImage(video, x, y, size, size, 0, 0, size, size);
+
+        const imageData = ctx.getImageData(0, 0, size, size);
+        const data = imageData.data;
+
+        // Average RGB values from center region
+        let r = 0, g = 0, b = 0;
+        let count = 0;
+
+        for (let i = 0; i < data.length; i += 4) {
+          // Focus on green channel (most sensitive to blood flow)
+          if (data[i + 1] > 50) { // Ignore very dark pixels
+            r += data[i];
+            g += data[i + 1];
+            b += data[i + 2];
+            count++;
+          }
+        }
+
+        if (count > 0) {
+          r /= count;
+          g /= count;
+          b /= count;
+          const avg = (r + g + b) / 3;
+
+          readings.push({
+            time: elapsed,
+            r, g, b,
+            avg,
+            raw: data
+          });
+        }
+      }
+
+      // Control frame rate for performance
+      setTimeout(() => {
+        animationId = requestAnimationFrame(captureFrame);
+      }, 1000 / TARGET_FPS);
+    };
+
+    // Cleanup function
+    window.__stopCameraPPG = () => {
+      stopCameraPPG(stream);
+      reject(new Error('Measurement stopped'));
+    };
   });
 };
 
 /**
- * Stop camera-based PPG measurement
+ * Stops the camera stream
+ * Call this when measurement ends or component unmounts
  */
-export const stopCameraPPG = () => {
-  if (!isMeasuring) return;
-  
-  isMeasuring = false;
-  
-  // Stop camera stream
-  if (cameraStream) {
-    cameraStream.getTracks().forEach(track => track.stop());
-    cameraStream = null;
+export const stopCameraPPG = (stream) => {
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
   }
-  
-  // Cancel animation frame
-  if (animationFrameId) {
-    cancelAnimationFrame(animationFrameId);
-    animationFrameId = null;
+  if (window.__stopCameraPPG) {
+    delete window.__stopCameraPPG;
   }
 };
-
-/**
- * Setup canvas and video elements for processing
- */
-const setupProcessingElements = () => {
-  // Create video element if needed
-  if (!video) {
-    video = document.createElement('video');
-    video.style.position = 'fixed';
-    video.style.top = '-9999px';
-    video.style.left = '-9999px';
-    video.style.width = '640px';
-    video.style.height = '480px';
-    document.body.appendChild(video);
-  }
-  
-  // Create canvas if needed
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.width = 100;
-    canvas.height = 100;
-    context = canvas.getContext('2d');
-  }
-};
-
-/**
- * Start processing video frames
- */
-const startProcessing = () => {
-  const frameData = [];
-  let frameCount = 0;
-  
-  const processFrame = () => {
-    if (!isMeasuring || !video.videoWidth) {
-      return;
-    }
-    
-    // Draw current video frame to canvas
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-    // Get pixel data
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    const pixels = imageData.data;
-    
-    // Calculate average color values
-    let rSum = 0, gSum = 0, bSum = 0;
-    for (let i = 0; i < pixels.length; i += 4) {
-      rSum += pixels[i];
-      gSum += pixels[i + GREEN];
-      bSum += pixels[i + BLUE];
-    }
-    
-    const pixelCount = canvas.width * canvas.height;
-    const rAvg = rSum / pixelCount;
-    const gAvg = gSum / pixelCount;
-    const bAvg = bSum / pixelCount;
-    
-    // Store frame data
-    frameData.push({
-      r: rAvg,
-      g: gAvg,
-      b: bAvg,
-      timestamp: Date.now()
-    });
-    
-    frameCount++;
-    
-    // Update progress
-    if (measurementCallback) {
-      const progress = Math.min(100, (frameCount / (FRAME_RATE * MEASUREMENT_DURATION)) * 100);
-      measurementCallback(progress);
-    }
-    
-    // Continue processing
-    animationFrameId = requestAnimationFrame(processFrame);
-  };
-  
-  // Start processing loop
-  animationFrameId = requestAnimationFrame(processFrame);
-};
-
-/**
- * Process collected PPG data to extract heart rate and HRV
- * @returns {Object} Processed PPG data
- */
-const processPPGData = () => {
-  // In a real implementation, this would:
-  // 1. Filter the raw color channel data
-  // 2. Extract the PPG signal (typically from green channel)
-  // 3. Detect heartbeats and calculate RR intervals
-  // 4. Calculate HRV metrics
-  
-  // For demonstration, we'll return simulated data
-  return {
-    timestamp: new Date().toISOString(),
-    duration: MEASUREMENT_DURATION,
-    heartRate: 72,
-    hrvMetrics: {
-      rmssd: 45.7,
-      lnrmssd: 3.82,
-      meanRR: 833,
-      sdnn: 38.2
-    },
-    signalQuality: 0.92
-  };
-};
-
-/**
- * Clean up resources
- */
-export const cleanup = () => {
-  stopCameraPPG();
-  
-  // Remove video element
-  if (video && video.parentNode) {
-    video.parentNode.removeChild(video);
-    video = null;
-  }
-  
-  // Clear canvas
-  canvas = null;
-  context = null;
-};
-
-// Cleanup on page unload
-window.addEventListener('beforeunload', cleanup);

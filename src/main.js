@@ -1,12 +1,9 @@
 <script>
-// ✅ SAFE: Use real Supabase project URL
-const supabaseUrl = 'https://isresrnchbbmydquqakq.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxaWJhY2ZodnZ1ZmV2cGt3eW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTQyMDcsImV4cCI6MjA3MTYzMDIwN30.m_lbwxM3c0CW0-Q0ltsHYQyQLoqy9dsL0rJciJ6uBqA';
-
 // Import Supabase (add this script tag in head)
-// <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-const { createClient } = supabase;
-const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+import { createClient } from '@supabase/supabase-js'
+const supabaseUrl = 'https://fqibacfhvvufevpkwynd.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Generate a temporary anonymous session ID (lasts for browser session)
 function getAnonymousId() {
@@ -38,7 +35,7 @@ function startSurvey() {
   saveToSupabase('pulse_survey_started');
 
   // Open survey in new tab
-  window.open('https://your-survey-url.com', '_blank');
+  window.open('https://forms.gle/94Tfv2fzBtwT336G7');
 
   // Reward points after opening
   triggerZapier('Survey Started', 30);

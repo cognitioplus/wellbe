@@ -1,67 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Well-Be: Intelligent Stress & Wellness Tracker</title>
 
-  <!-- DESCRIPTION & SEO -->
-  <meta name="description" content="Track HRV, stress, sleep, and emotions with AI-powered insights. Build resilience. Heal yourself, heal the world.">
+  <!-- DESCRIPTION -->
+  <meta name="description" content="Track HRV, emotions, sleep, and habits with AI insights. Reclaim your inner light. Join the One Billion Returning.">
   <meta name="author" content="Cognitio+">
-  <meta name="keywords" content="HRV, stress management, mental health, wellness, mindfulness, emotion tracking, Cognitio+, Well-Be">
+  <meta name="keywords" content="HRV, stress management, mental health, wellness, emotion tracking, Cognitio+, Well-Be">
 
-  <!-- OPEN GRAPH / FACEBOOK -->
+  <!-- OPEN GRAPH / SOCIAL -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cognitioplus.github.io/wellbe/">
-  <meta property="og:title" content="Well-Be: AI-Powered Wellness & Resilience Tracker">
-  <meta property="og:description" content="Track heart health, stress, and emotions with AI insights for improved wellness. Join the One Billion Returning.">
-  <meta property="og:image" content="https://appimize.app/assets/apps/user_1097/images/bae59281d566_404_1097.png">
-  <meta property="og:image:alt" content="Well-Be App Dashboard - Track HRV, Sleep, Emotions & Habits">
-  <meta property="og:site_name" content="Well-Be by Cognitio+">
+  <meta property="og:title" content="Well-Be: AI-Powered Wellness Tracker">
+  <meta property="og:description" content="Track heart health, stress, and emotions with AI insights. Join the One Billion Returning.">
+  <meta property="og:image" content="/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="Well-Be App Dashboard - Track HRV, Sleep, Emotions">
 
   <!-- TWITTER -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://cognitioplus.github.io/wellbe/">
-  <meta property="twitter:title" content="Well-Be: AI-Powered Wellness & Resilience Tracker">
-  <meta property="twitter:description" content="Track HRV, stress, and emotions. Get personalized insights. Build unshakeable resilience.">
-  <meta property="twitter:image" content="https://appimize.app/assets/apps/user_1097/images/bae59281d566_404_1097.png">
+  <meta property="twitter:title" content="Well-Be: AI-Powered Wellness Tracker">
+  <meta property="twitter:description" content="Track HRV, stress, and emotions. Build resilience. Heal yourself, heal the world.">
+  <meta property="twitter:image" content="/assets/images/og-image.jpg">
 
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Montserrat:wght@300;400;500&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
 
-  <!-- LOCAL FONTS (Optional fallback) -->
-  <style>
-    @font-face {
-      font-family: 'Oswald';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: local('Oswald Regular'), local('Oswald-Regular'), url(/fonts/Oswald-Regular.woff2) format('woff2');
-    }
-    @font-face {
-      font-family: 'Oswald';
-      font-style: normal;
-      font-weight: 700;
-      font-display: swap;
-      src: local('Oswald Bold'), local('Oswald-Bold'), url(/fonts/Oswald-Bold.woff2) format('woff2');
-    }
-    body {
-      font-family: 'Roboto Condensed', 'Montserrat Classic', sans-serif;
-    }
-    h1, h2, h3, h4, h5, h6, .font-[Oswald] { font-family: 'Oswald', sans-serif; }
-    .font-[Montserrat] { font-family: 'Montserrat Clasic', sans-serif; }
-  </style>
-
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="https://appimize.app/assets/apps/user_1097/images/bae59281d566_404_1097.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#b425aa">
 
-  <!-- SCHEMA.ORG STRUCTURED DATA -->
+  <!-- SCHEMA.ORG -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -75,253 +51,15 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "featureList": [
-      "Track HRV and recovery",
-      "Log and track emotions daily",
-      "Build resilience habits",
-      "Get AI-like insights",
-      "Weekly challenges & achievements"
-    ]
+    }
   }
   </script>
 
-  <!-- STYLES (Tailwind-injected or build output) -->
-  <script type="module" src="main.tsx"></script>
-
-  <!-- GLOBAL STYLES (can be moved to CSS file later) -->
-  <style>
-    :root {
-      --cognitio-primary: #b425aa;
-      --cognitio-button: #d83eca;
-      --cognitio-accent: #f3e8ff;
-    }
-    .btn-primary {
-      background: linear-gradient(to right, var(--cognitio-primary), var(--cognitio-button));
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(180, 37, 170, 0.3);
-    }
-    .card {
-      border: 1px solid #f0f0f0;
-      border-radius: 1rem;
-      background: white;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      backdrop-filter: blur(10px);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(180, 37, 170, 0.15);
-    }
-    .progress-bar {
-      height: 8px;
-      background: #f3f4f6;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--cognitio-primary);
-      border-radius: 999px;
-      transition: width 0.8s ease;
-    }
-    .tag {
-      display: inline-flex;
-      padding: 0.25rem 0.625rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border-radius: 9999px;
-      background: var(--cognitio-accent);
-      color: var(--cognitio-primary);
-      border: 1px solid var(--cognitio-primary);
-    }
-    .pulse {
-      position: relative;
-    }
-    .pulse::after {
-      content: '';
-      position: absolute;
-      top: -5px; bottom: -5px;
-      left: -5px; right: -5px;
-      border: 2px solid var(--cognitio-primary);
-      border-radius: 9999px;
-      opacity: 0.6;
-      animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.1); opacity: 0.3; }
-      100% { transform: scale(1); opacity: 0.6; }
-    }
-  </style>
+  <!-- LOAD REACT & SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
-  <div id="root">
-    <!-- Hero Section -->
-    <header class="text-center py-16 px-6 bg-gradient-to-br from-purple-50 to-pink-50">
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 font-[Oswald] mb-4">
-        Well-Be
-      </h1>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8 font-[Roboto_Condensed]">
-        You are not broken. You are remembering. Track your heart, mind, and soul — and join the One Billion Soul Returning to the Source.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick="openTracker()" class="btn-primary font-[Montserrat] pulse">
-          Open Tracker
-        </button>
-        <button onclick="designHabit()" class="btn-primary bg-white text-[#b425aa] hover:bg-gray-50">
-          Design Your Habit
-        </button>
-      </div>
-    </header>
-
-    <!-- Dashboard Preview (Simulated) -->
-    <section id="dashboard" class="hidden px-6 py-12 max-w-6xl mx-auto">
-      <h2 class="text-3xl font-semibold mb-8 text-center text-gray-800 font-[Oswald]">
-        Your Wellness Dashboard
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <!-- HRV Card -->
-        <div class="card p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="font-[Oswald] text-sm font-medium text-[#c80ec9]">HRV Score</h3>
-            <span class="text-green-600 text-xs">+5%</span>
-          </div>
-          <div class="progress-bar mt-2">
-            <div class="progress-fill" style="width: 45%;"></div>
-          </div>
-          <p class="text-2xl font-bold mt-2">68</p>
-          <p class="text-xs text-gray-500">Good recovery</p>
-        </div>
-
-        <!-- Sleep Card -->
-        <div class="card p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="font-[Oswald] text-sm font-medium text-blue-600">Sleep Quality</h3>
-            <span class="text-green-600 text-xs">+8%</span>
-          </div>
-          <div class="progress-bar mt-2">
-            <div class="progress-fill" style="width: 72%;"></div>
-          </div>
-          <p class="text-2xl font-bold mt-2">7.2 hrs</p>
-          <p class="text-xs text-gray-500">Deep sleep improved</p>
-        </div>
-
-        <!-- Energy Card -->
-        <div class="card p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="font-[Oswald] text-sm font-medium text-orange-600">Energy Level</h3>
-            <span class="text-red-600 text-xs">-3%</span>
-          </div>
-          <div class="progress-bar mt-2">
-            <div class="progress-fill" style="width: 60%;"></div>
-          </div>
-          <p class="text-2xl font-bold mt-2">60%</p>
-          <p class="text-xs text-gray-500">Recharge with rest</p>
-        </div>
-      </div>
-
-      <!-- Insight Toast -->
-      <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-8 rounded shadow-sm">
-        <div class="flex items-start">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-green-500 mr-2 mt-0.5">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-          <div>
-            <h4 class="font-medium text-black font-[Montserrat]">Great Recovery!</h4>
-            <p class="text-sm text-black font-[Roboto_Condensed]">Your HRV improved 15% after yesterday's meditation session.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Weekly Challenge -->
-      <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
-        <div class="flex justify-between items-center">
-          <div>
-            <h3 class="font-semibold">Weekly Challenge</h3>
-            <p class="text-sm text-gray-600">Complete all daily goals 5 times this week</p>
-          </div>
-          <div class="text-right">
-            <div class="text-2xl font-bold">3/5</div>
-            <div class="text-xs text-gray-500">days completed</div>
-          </div>
-        </div>
-        <div class="progress-bar mt-3">
-          <div class="progress-fill" style="width: 60%;"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-16 px-6 bg-white">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl font-semibold mb-10 text-gray-800 font-[Oswald]">What Users Say</h2>
-        <div class="space-y-8">
-          <blockquote class="border-l-4 border-[#b425aa] pl-6 italic text-gray-700">
-            "Well-Be helped me see how my emotions affect my heart rate. I finally feel in control."
-            <footer class="mt-2 font-semibold">— Jason Canmorot, Resilience Guide</footer>
-          </blockquote>
-          <blockquote class="border-l-4 border-[#b425aa] pl-6 italic text-gray-700">
-            "The habit builder changed my mornings. Small steps, big change."
-            <footer class="mt-2 font-semibold">— April Rosemarie Baquilod, 90-Day Streak</footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-16 px-6 text-center bg-gradient-to-br from-indigo-50 to-purple-50">
-      <h2 class="text-3xl font-bold mb-4 text-gray-800 font-[Oswald]">Ready to Begin?</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 font-[Roboto_Condensed]">
-        Your healing heals the world. Start your journey today — no cost, no risk, just care.
-      </p>
-      <button onclick="joinWaitlist()" class="btn-primary font-[Montserrat]">
-        Signup
-      </button>
-    </section>
-  </div>
-
-  <!-- SCRIPTS -->
-  <!-- Load Supabase JS Client -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    // Simulate app functionality
-    function openTracker() {
-      document.getElementById('dashboard').classList.remove('hidden');
-      window.scrollTo({ top: document.getElementById('dashboard').offsetTop - 100, behavior: 'smooth' });
-    }
-
-    function designHabit() {
-      alert("Habit Designer: Coming Soon! We'll email you when it's ready.");
-    }
-
-    function joinWaitlist() {
-      const email = prompt("Enter your email to join the Well-Be movement:");
-      if (email && email.includes('@')) {
-        alert(`Thank you! ${email} has been added to the Well-Be waitlist. 🌱`);
-        // In future: send to Firebase or email service
-      } else if (email) {
-        alert("Please enter a valid email address.");
-      }
-    }
-
-    // Service Worker Registration
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('SW registered:', reg))
-          .catch(err => console.log('SW registration failed:', err));
-      });
-    }
-  </script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

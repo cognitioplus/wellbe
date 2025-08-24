@@ -71,8 +71,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="text-center py-8 text-gray-200 text-sm">
-        <p>© {new Date().getFullYear()} Cognitio+. Join the <strong>One Billion Returning</strong>.</p>
+        <p>© {new Date().getFullYear()} Cognitio+. Your Patner in <strong>Resilience</strong>. Powered by <strong>Awareness</strong>.  </p>
       </footer>
     </div>
   );
-}

@@ -1,0 +1,7 @@
+{
+  "name": "Well-Be: Intelligent Well-Being Tracker",
+  "description": "Measure your stress levels using your device's camera to analyze Heart Rate Variability (HRV) and receive personalized well-being insights from AI.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

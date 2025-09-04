@@ -1,142 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Well-Be: Your Intelligent Wellness Tracker</title>
-
-  <!-- DESCRIPTION & SEO -->
-  <meta name="description" content="Track HRV, stress, sleep, and emotions with AI-powered insights. Build resilience. Heal yourself, heal the world.">
-  <meta name="author" content="Cognitio+">
-  <meta name="keywords" content="HRV, stress management, mental health, wellness, mindfulness, emotion tracking, Cognitio+, Well-Be">
-
-  <!-- OPEN GRAPH / SOCIAL -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cognitioplus.github.io/wellbe/">
-  <meta property="og:title" content="Well-Be: AI-Powered Wellness & Resilience Tracker">
-  <meta property="og:description" content="Track heart health, stress, and emotions with AI insights. Join the One Billion Returning.">
-  <meta property="og:image" content="https://appimize.app/assets/apps/user_1097/images/fa5c7731b955_745_1097.png">
-  <meta property="og:image:alt" content="Well-Be App Dashboard - Track HRV, Sleep, Emotions">
-
-  <!-- TWITTER -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://cognitioplus.github.io/wellbe/">
-  <meta property="twitter:title" content="Well-Be: AI-Powered Wellness & Resilience Tracker">
-  <meta property="twitter:description" content="Track HRV, stress, and emotions. Your healing heals the world.">
-  <meta property="twitter:image" content="https://appimize.app/assets/apps/user_1097/images/fa5c7731b955_745_1097.png">
-
-  <!-- FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Montserrat:wght@300;400;500&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
-
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="https://appimize.app/assets/apps/user_1097/images/b6efa383c968_220_1097.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#b425aa">
-
-  <!-- SCHEMA.ORG -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Well-Be by Cognitio+",
-    "url": "https://cognitioplus.github.io/wellbe/",
-    "description": "AI-powered emotion tracker and habit builder for mental wellness and resilience",
-    "applicationCategory": "HealthApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Well-Be Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Condensed:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'heading': ['Montserrat', 'sans-serif'],
+                        'body': ['Roboto Condensed', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body {
+            @apply font-body;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            @apply font-heading font-bold;
+        }
+        button {
+             @apply font-heading;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.16.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.542.0"
   }
-  </script>
-
-  <!-- Preload critical fonts -->
-  <style>
-    @font-face {
-      font-family: 'Oswald';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: local('Oswald Regular'), local('Oswald-Regular'), url(/fonts/Oswald-Regular.woff2) format('woff2');
-    }
-    @font-face {
-      font-family: 'Oswald';
-      font-style: normal;
-      font-weight: 700;
-      font-display: swap;
-      src: local('Oswald Bold'), local('Oswald-Bold'), url(/fonts/Oswald-Bold.woff2) format('woff2');
-    }
-    @font-face {
-      font-family: 'Montserrat';
-      font-style: normal;
-      font-weight: 300;
-      font-display: swap;
-      src: local('Montserrat Light'), local('Montserrat-Light'), url(/fonts/Montserrat-Light.woff2) format('woff2');
-    }
-    @font-face {
-      font-family: 'Montserrat';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: local('Montserrat Regular'), local('Montserrat-Regular'), url(/fonts/Montserrat-Regular.woff2) format('woff2');
-    }
-    @font-face {
-      font-family: 'Roboto Condensed';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(/fonts/RobotoCondensed-Regular.woff2) format('woff2');
-    }
-  </style>
-
-  <!-- Inline Critical CSS (Optional for performance) -->
-  <style>
-    body {
-      font-family: 'Roboto Condensed', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom right, #c80ec9, #b425aa);
-      color: white;
-      min-height: 100vh;
-    }
-    #root { max-width: 1280px; margin: 0 auto; padding: 1rem; }
-    .pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-    @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-  </style>
+}
+</script>
 </head>
-<body class="min-h-screen">
-  <div id="root"></div>
-
-  <!-- Load App Scripts -->
-  <script type="module">
-    // Ensure base path is correct for GitHub Pages
-    // This will be handled by Vite, but we're ready
-  </script>
-
-  <!-- Built App Bundle (after `npm run build`) -->
-  <!-- Vite will inject the correct paths during build -->
-  <!-- Example after build: -->
-  <!-- <script type="module" src="/wellbe/assets/main.js"></script> -->
-  <!-- <link rel="stylesheet" href="/wellbe/assets/style.css"> -->
-
-  <!-- Fallback if Vite doesn't auto-inject -->
-  <!-- Remove in production if using proper build -->
-  <script type="module" src="/src/main.js"></script>
-
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('SW registered:', reg))
-          .catch(err => console.log('SW registration failed:', err));
-      });
-    }
-  </script>
+<body class="bg-gray-50">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>

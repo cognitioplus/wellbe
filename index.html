@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Well-Be Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Well-Be Tracker helps you monitor and analyze your wellbeing with beautiful charts and insights." />
+    <meta name="keywords" content="wellbeing, tracker, health, chart, monitor, mental health, analytics" />
+    <meta name="theme-color" content="#4F46E5" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload fonts for better performance -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Condensed:wght@400&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Condensed:wght@400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Well-Be Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -29,23 +36,62 @@
             @apply font-heading font-bold;
         }
         button {
-             @apply font-heading;
+            @apply font-heading;
+        }
+        /* Simple fade-in for root */
+        #root {
+            @apply transition-opacity duration-500 opacity-0;
+        }
+        #root.ready {
+            @apply opacity-100;
+        }
+        /* Spinner styles */
+        .spinner {
+            @apply absolute top-1/2 left-1/2 w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin;
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
-    "react/": "https://aistudiocdn.com/react@^19.1.1/",
-    "react": "https://aistudiocdn.com/react@^19.1.1",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.16.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.542.0"
-  }
-}
-</script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+        "react/": "https://aistudiocdn.com/react@^19.1.1/",
+        "react": "https://aistudiocdn.com/react@^19.1.1",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.16.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.542.0"
+      }
+    }
+    </script>
 </head>
-<body class="bg-gray-50">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+<body class="bg-gray-50" aria-label="Application">
+    <main id="main-content" role="main" aria-label="Main Content">
+        <!-- Loading spinner shown until React app loads -->
+        <div id="spinner-container">
+            <div class="spinner" aria-label="Loading"></div>
+        </div>
+        <div id="root"></div>
+        <noscript>
+            <div class="p-4 bg-red-50 text-red-700 text-center mt-10 rounded shadow">
+                JavaScript is required to run Well-Be Tracker. Please enable it in your browser settings.
+            </div>
+        </noscript>
+    </main>
+    <!-- Load React app and fade in root -->
+    <script type="module">
+        // Fade in root when React app mounts
+        const root = document.getElementById('root');
+        window.addEventListener('DOMContentLoaded', () => {
+            import('/index.tsx')
+                .then(() => {
+                    root.classList.add('ready');
+                    document.getElementById('spinner-container').style.display = 'none';
+                })
+                .catch((e) => {
+                    root.innerHTML =
+                      '<div class="p-4 bg-red-100 text-red-700 text-center mt-10 rounded shadow">Failed to load the application. Please refresh or contact support.</div>';
+                    document.getElementById('spinner-container').style.display = 'none';
+                });
+        });
+    </script>
 </body>
 </html>
